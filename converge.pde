@@ -1,3 +1,20 @@
+/*************************
+*meta:  this needs to be split into two projects.  giving the user agency over
+*the multiple-histories idea is more nuanced than seed selection.  also, the
+*search space for histories is exponential in live state neigborhood size.
+*
+*the idea of historical 3D rendered conways is sweet, and the user agency over
+*seed can be used to give feedback that it is a large and critically sensitive
+*space with which they are interacting.
+*
+*the renderer can be used for convergent history display, but the user agency
+*is essentially meaningless.  maybe just setting one of my computers to work
+*for a week or two to find a few trajectories to the end state of the
+*R-Pentomino methusela, then rendering only that to the user.  even giving them
+*control over the camera might be silly - it might be better to record a video
+*of me controlling the camera so I can show the viewer what I think is pretty.
+*************************/
+
 // SEED GRID AND TRANSPARENT "press SPACE for mathemagics"
 // user draws a seed
 // user says go

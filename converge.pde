@@ -38,16 +38,16 @@ int mid;
 PeasyCam cam;
 
 void setup() {
-  size(800,600,P3D);
-  background(0xFFDDDDDD);
+  size(1024,768,P3D);
+  background(0xFF333333);
+  fill(0xff3355aa);
   frameRate(30);
   noStroke();
-  fill(0xFF333333);
   
   currGen = 0;
-  lifespan = 200;
-  cellSize = 5;
-  cellPad = 2;
+  lifespan = 500;
+  cellSize = 10;
+  cellPad = 1;
   
   boolean[][] seed = new boolean[][]{{false,true,true,false},
                                      {false,false,true,true},
@@ -63,14 +63,25 @@ void setup() {
 }
 
 void draw() {
-  background(0xFFDDDDDD);
+  background(0xFF331111);
   cam.lookAt(mid,mid,currGen*cellSize);
+  
+  lightScene();
+  
+  int start = getStart(currGen, lifespan, 50);
+  
   int depth = 0;
   for (boolean[][] generation : universe) {
+    
     if (depth > currGen) {
       currGen++;
       break;
     }
+    if (depth < start) {
+      depth++;
+      continue;
+    }
+    
     for (int i = 0; i < generation.length; i++) {
       for (int j = 0; j < generation[0].length; j++) {
         if (generation[i][j]) {
@@ -83,4 +94,14 @@ void draw() {
     }
     depth++;
   }
+}
+
+int getStart(int currGen, int lifespan, int window) {
+  if (currGen >= lifespan - 1) return 0;
+  return currGen - window < 0 ? 0 : currGen - window;
+}
+
+void lightScene() {
+  float[] lightPos = cam.getPosition();
+  pointLight(255, 255, 255, lightPos[0], lightPos[1], lightPos[2]);
 }
